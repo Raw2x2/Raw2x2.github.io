@@ -320,12 +320,16 @@
 <script type="text/javascript">
 	let views = document.getElementsByClassName("date")
 	setInterval(() => {
-		let date = new Date()
-		let a = date.toLocaleDateString().split("/").map(i => i.length == 1 ? "0" + i : i).join("-")
-		date = a + " " + date.toString().slice(16, 24);
-		for (let i in views)
-			views[i].innerText = "当前时间：" + date;
-	}, 10)
+// 		let date = new Date()
+// 		let a = date.toLocaleDateString().split("/").map(i => i.length == 1 ? "0" + i : i).join("-")
+// 		date = a + " " + date.toString().slice(16, 24);
+// 		for (let i in views)
+// 			views[i].innerText = "当前时间：" + date;
+		let date=new Date()
+	let timestampe=date.toLocaleString().replaceAll('/','-')
+	let dateview=date.toLocaleTimeString()
+	views.innerText=timestampe
+	}, 100)
 	//进入全屏
 	function enterFullScreen() {
 		var de = document.documentElement;
