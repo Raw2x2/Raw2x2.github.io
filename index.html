@@ -328,7 +328,8 @@
 		let date=new Date()
 	let timestampe=date.toLocaleString().replaceAll('/','-')
 	let dateview=date.toLocaleTimeString()
-	views.innerText=timestampe
+	views[0].innerText=timestampe
+		views[1].innerText=timestampe
 	}, 100)
 	//进入全屏
 	function enterFullScreen() {
