@@ -1,350 +1,353 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<style type="text/css">
-		body {
-			background-color: rgb(245, 247, 249);
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<style type="text/css">
+	body {
+		background-color: rgb(245, 247, 249);
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	html {
+		font-size: 40px;
+	}
+
+	header {
+		padding: .55rem .7rem;
+		text-align: center;
+		background-color: white;
+	}
+
+	header .icon {
+		float: left;
+		width: 1.3rem;
+		height: 1.3rem;
+	}
+
+	header .title {
+		height: 1.1rem;
+		margin-top: .2rem;
+		transform: translateX(-1.5rem);
+	}
+
+	hr {
+		border: none;
+		height: .1rem;
+		background-color: rgb(238, 238, 239);
+	}
+
+	.date {
+		white-space: nowrap;
+	}
+
+	.table-container {
+		position: relative;
+		white-space: nowrap;
+		font-size: 1rem;
+		text-align: center;
+		overflow: hidden;
+		background-color: white;
+	}
+
+	.table-container .option {
+		position: relative;
+		display: inline-block;
+		width: 50%;
+		font-size: .93rem;
+		line-height: 2.8rem;
+		opacity: .65;
+	}
+
+	.table-container .option.select {
+		color: rgb(81, 151, 247);
+		opacity: 1;
+	}
+
+	.table-container .option.select::after {
+		position: absolute;
+		content: "";
+		bottom: 0;
+		left: 50%;
+		width: 6rem;
+		height: .2rem;
+		background-color: rgb(81, 151, 247);
+		transform: translateX(-50%);
+		border-radius: 1rem;
+	}
+
+	.info-container {
+		position: relative;
+		height: 7.5rem;
+		background-color: rgb(100, 217, 125);
+	}
+
+	.info-container .background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, .3), transparent);
+	}
+
+	.info-container .content {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+	}
+
+	.info-container .warning {
+		color: rgba(255, 255, 255, .9);
+		font-size: .8rem;
+		line-height: 1.3rem;
+		background-color: rgb(241, 158, 56);
+		text-align: center;
+	}
+
+	.info-container .state {
+		text-align: center;
+		color: white;
+	}
+
+	.info-container .state .icon {
+		width: 1.2rem;
+		height: 1.2rem;
+		margin-right: -.3rem;
+		transform: translateY(.2rem);
+
+	}
+
+	.info-container .state h2 {
+		font-weight: 400;
+		font-size: 1.9rem;
+		margin: .1rem;
+		letter-spacing: .5rem;
+	}
+
+	.info-container .state h3 {
+		font-weight: 300;
+		font-size: 1rem;
+		margin-top: .3rem;
+		letter-spacing: .2rem;
+	}
+
+	.info-container .state .info-button {
+		position: absolute;
+		right: 1rem;
+		top: 2rem;
+		font-size: .85rem;
+		opacity: .9;
+	}
+
+	.info-container .bottom {
+		position: absolute;
+		width: 100%;
+		height: 1rem;
+		bottom: 0;
+		text-align: center;
+	}
+
+	.info-container .animation-container {
+		height: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	.info-container .animation-container .warp {
+		width: calc(100% + 3.9rem);
+		height: 100%;
+		animation: animationa 1s linear infinite;
+	}
+
+	.info-container .animation-container span {
+		display: inline-block;
+		width: 1.4rem;
+		height: 5rem;
+		background-color: white;
+		margin-right: 2.5rem;
+		transform: translateY(-30%) rotate(45deg);
+	}
+
+	@keyframes animationa {
+		from {
+			transform: translateX(-3.9rem);
 		}
 
-		* {
-			margin: 0;
-			padding: 0;
+		to {
+			transform: translateX(0);
 		}
+	}
 
-		html {
-			font-size: 40px;
-		}
+	.info-container .date {
+		position: absolute;
+		padding: 0 .5rem;
+		left: 50%;
+		top: 50%;
+		font-size: .78rem;
+		line-height: .9rem;
+		color: rgba(255, 255, 255, .9);
+		transform: translate(-50%, -50%);
+		background-color: rgba(0, 0, 0, .5);
+		border-radius: 1rem;
+	}
 
-		header {
-			padding: .55rem .7rem;
-			text-align: center;
-			background-color: white;
-		}
+	.qr-code-container {
+		text-align: center;
+	}
 
-		header .icon {
-			float: left;
-			width: 1.3rem;
-			height: 1.3rem;
-		}
+	.qr-code-container .code {
+		display: inline-block;
+		padding: .6rem;
+		margin-top: 2.5rem;
+		border-radius: .5rem;
+		box-shadow: 0 .3rem .75rem rgba(0, 0, 0, .28);
+		background-color: white;
+	}
 
-		header .title {
-			height: 1.1rem;
-			margin-top: .2rem;
-			transform: translateX(-1.5rem);
-		}
+	.qr-code-container .code img {
+		width: 10.5rem;
+	}
 
-		hr {
-			border: none;
-			height: .1rem;
-			background-color: rgb(238, 238, 239);
-		}
+	.qr-code-container .hint {
+		margin-top: .5rem;
+		font-size: .78rem;
+		color: rgb(112, 121, 135);
+		text-shadow: 1px 1px 0 rgba(120, 130, 145, .2);
+	}
 
-		.date {
-			white-space: nowrap;
-		}
+	.qr-code-container .date {
+		position: absolute;
+		left: 50%;
+		margin-top: 1.5rem;
+		padding: .37rem 1rem;
+		color: white;
+		transform: translateX(-50%);
+		border-radius: 100rem;
+		background-color: rgb(81, 151, 247);
+	}
+</style>
 
-		.table-container {
-			position: relative;
-			white-space: nowrap;
-			font-size: 1rem;
-			text-align: center;
-			overflow: hidden;
-			background-color: white;
-		}
-
-		.table-container .option {
-			position: relative;
-			display: inline-block;
-			width: 50%;
-			font-size: .93rem;
-			line-height: 2.8rem;
-			opacity: .65;
-		}
-
-		.table-container .option.select {
-			color: rgb(81, 151, 247);
-			opacity: 1;
-		}
-
-		.table-container .option.select::after {
-			position: absolute;
-			content: "";
-			bottom: 0;
-			left: 50%;
-			width: 6rem;
-			height: .2rem;
-			background-color: rgb(81, 151, 247);
-			transform: translateX(-50%);
-			border-radius: 1rem;
-		}
-
-		.info-container {
-			position: relative;
-			height: 7.5rem;
-			background-color: rgb(100, 217, 125);
-		}
-
-		.info-container .background {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(to bottom, rgba(0, 0, 0, .3), transparent);
-		}
-
-		.info-container .content {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			z-index: 2;
-		}
-
-		.info-container .warning {
-			color: rgba(255, 255, 255, .9);
-			font-size: .8rem;
-			line-height: 1.3rem;
-			background-color: rgb(241, 158, 56);
-			text-align: center;
-		}
-
-		.info-container .state {
-			text-align: center;
-			color: white;
-		}
-
-		.info-container .state .icon {
-			width: 1.2rem;
-			height: 1.2rem;
-			margin-right: -.3rem;
-			transform: translateY(.2rem);
-
-		}
-
-		.info-container .state h2 {
-			font-weight: 400;
-			font-size: 1.9rem;
-			margin: .1rem;
-			letter-spacing: .5rem;
-		}
-
-		.info-container .state h3 {
-			font-weight: 300;
-			font-size: 1rem;
-			margin-top: .3rem;
-			letter-spacing: .2rem;
-		}
-
-		.info-container .state .info-button {
-			position: absolute;
-			right: 1rem;
-			top: 2rem;
-			font-size: .85rem;
-			opacity: .9;
-		}
-
-		.info-container .bottom {
-			position: absolute;
-			width: 100%;
-			height: 1rem;
-			bottom: 0;
-			text-align: center;
-		}
-
-		.info-container .animation-container {
-			height: 100%;
-			white-space: nowrap;
-			overflow: hidden;
-		}
-
-		.info-container .animation-container .warp {
-			width: calc(100% + 3.9rem);
-			height: 100%;
-			animation: animationa 1s linear infinite;
-		}
-
-		.info-container .animation-container span {
-			display: inline-block;
-			width: 1.4rem;
-			height: 5rem;
-			background-color: white;
-			margin-right: 2.5rem;
-			transform: translateY(-30%) rotate(45deg);
-		}
-
-		@keyframes animationa {
-			from {
-				transform: translateX(-3.9rem);
-			}
-
-			to {
-				transform: translateX(0);
-			}
-		}
-
-		.info-container .date {
-			position: absolute;
-			padding: 0 .5rem;
-			left: 50%;
-			top: 50%;
-			font-size: .78rem;
-			line-height: .9rem;
-			color: rgba(255, 255, 255, .9);
-			transform: translate(-50%, -50%);
-			background-color: rgba(0, 0, 0, .5);
-			border-radius: 1rem;
-		}
-
-		.qr-code-container {
-			text-align: center;
-		}
-
-		.qr-code-container .code {
-			display: inline-block;
-			padding: .6rem;
-			margin-top: 2.5rem;
-			border-radius: .5rem;
-			box-shadow: 0 .3rem .75rem rgba(0, 0, 0, .28);
-			background-color: white;
-		}
-
-		.qr-code-container .code img {
-			width: 10.5rem;
-		}
-
-		.qr-code-container .hint {
-			margin-top: .5rem;
-			font-size: .78rem;
-			color: rgb(112, 121, 135);
-			text-shadow: 1px 1px 0 rgba(120, 130, 145, .2);
-		}
-
-		.qr-code-container .date {
-			position: absolute;
-			left: 50%;
-			margin-top: 1.5rem;
-			padding: .37rem 1rem;
-			color: white;
-			transform: translateX(-50%);
-			border-radius: 100rem;
-			background-color: rgb(81, 151, 247);
-		}
-	</style>
-	<body>
-		<header>
-			<svg t="1647790841410" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-				p-id="2191" width="200" height="200">
-				<path
-					d="M231.8 478.6c-16 16-16 41.9 0 57.9l388.6 388.6c16 16 41.9 16 57.9 0s16-41.9 0-57.9L289.7 478.6c-16-16-41.9-16-57.9 0z"
-					fill="#242424" p-id="2192"></path>
-				<path
-					d="M231.8 537.9c16 16 41.9 16 57.9 0l388.6-388.6c16-16 16-41.9 0-57.9s-41.9-16-57.9 0L231.8 480c-16 16-16 41.9 0 57.9z"
-					fill="#242424" p-id="2193"></path>
-			</svg>
-			<img class="title" src="images/title_name.png">
-		</header>
-		<hr class="title-hr">
-		<div class="table-container">
-			<span class="option">
-				请假信息
-			</span>
-			<span class="option select">
-				核验二维码
-			</span>
-		</div>
-		<div class="info-container">
-			<div class="background"></div>
-			<div class="content">
-				<div class="warning">请出示专属核验二维码，用于验证请求单真伪</div>
-				<div class="state">
-					<h3>
-						<svg t="1647793909967" class="icon" viewBox="0 0 1024 1024" version="1.1"
-							xmlns="http://www.w3.org/2000/svg" p-id="4403" width="200" height="200">
-							<path
-								d="M512.697383 63.443961c-247.539816 0-448.208115 200.668299-448.208115 448.208115 0 247.539816 200.668299 448.208115 448.208115 448.208115 247.539816 0 448.208115-200.668299 448.208115-448.208115C960.905498 264.11226 760.237199 63.443961 512.697383 63.443961zM782.650675 386.324696 472.510102 703.184297c-1.057075 1.586125-2.233877 3.100618-3.620457 4.504594-12.155854 12.346189-31.861662 12.346189-44.025703 0L270.811334 551.265282c-12.146645-12.347213-12.146645-32.354895 0-44.683688 12.154831-12.347213 31.860638-12.347213 44.016493 0L446.411701 640.173195l292.213271-298.549583c12.165064-12.346189 31.861662-12.346189 44.025703 0C794.797319 353.9698 794.797319 373.97646 782.650675 386.324696z"
-								p-id="4404" data-spm-anchor-id="a313x.7781069.0.i2" class="selected" fill="#ffffff">
-							</path>
-						</svg>
-						审批已通过
-					</h3>
-					<h2>正在休假中</h2>
-					<span class="info-button">个人信息 ></span>
-				</div>
-				<div class="bottom">
-					<div class="animation-container">
-						<div class="warp">
-							<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-						</div>
+<body>
+	<header>
+		<svg t="1647790841410" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+			p-id="2191" width="200" height="200">
+			<path
+				d="M231.8 478.6c-16 16-16 41.9 0 57.9l388.6 388.6c16 16 41.9 16 57.9 0s16-41.9 0-57.9L289.7 478.6c-16-16-41.9-16-57.9 0z"
+				fill="#242424" p-id="2192"></path>
+			<path
+				d="M231.8 537.9c16 16 41.9 16 57.9 0l388.6-388.6c16-16 16-41.9 0-57.9s-41.9-16-57.9 0L231.8 480c-16 16-16 41.9 0 57.9z"
+				fill="#242424" p-id="2193"></path>
+		</svg>
+		<img class="title" src="images/title_name.png">
+	</header>
+	<hr class="title-hr">
+	<div class="table-container">
+		<span class="option">
+			请假信息
+		</span>
+		<span class="option select">
+			核验二维码
+		</span>
+	</div>
+	<div class="info-container">
+		<div class="background"></div>
+		<div class="content">
+			<div class="warning">请出示专属核验二维码，用于验证请求单真伪</div>
+			<div class="state">
+				<h3>
+					<svg t="1647793909967" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="4403" width="200" height="200">
+						<path
+							d="M512.697383 63.443961c-247.539816 0-448.208115 200.668299-448.208115 448.208115 0 247.539816 200.668299 448.208115 448.208115 448.208115 247.539816 0 448.208115-200.668299 448.208115-448.208115C960.905498 264.11226 760.237199 63.443961 512.697383 63.443961zM782.650675 386.324696 472.510102 703.184297c-1.057075 1.586125-2.233877 3.100618-3.620457 4.504594-12.155854 12.346189-31.861662 12.346189-44.025703 0L270.811334 551.265282c-12.146645-12.347213-12.146645-32.354895 0-44.683688 12.154831-12.347213 31.860638-12.347213 44.016493 0L446.411701 640.173195l292.213271-298.549583c12.165064-12.346189 31.861662-12.346189 44.025703 0C794.797319 353.9698 794.797319 373.97646 782.650675 386.324696z"
+							p-id="4404" data-spm-anchor-id="a313x.7781069.0.i2" class="selected" fill="#ffffff">
+						</path>
+					</svg>
+					审批已通过
+				</h3>
+				<h2>正在休假中</h2>
+				<span class="info-button">个人信息 ></span>
+			</div>
+			<div class="bottom">
+				<div class="animation-container">
+					<div class="warp">
+						<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
 					</div>
-					<div class="date"></div>
 				</div>
+				<div class="date"></div>
 			</div>
 		</div>
-		<div class="qr-code-container">
-			<div class="code">
-				<img src="images/er.png">
-			</div>
-			<div class="hint">请使用辅导猫扫码核验请假单真伪</div>
-			<div class="date"></div>
+	</div>
+	<div class="qr-code-container">
+		<div class="code">
+			<img src="images/er.png">
 		</div>
-	<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<div>
-			     <a href="javascript:;" onclick="enterFullScreen()">进入全屏</a>
-			      &nbsp;
-		        <a href="javascript:;" onclick="exitFullScreen()">退出全屏</a>
-		  </div>
-	</body>
-	<script type="text/javascript">
-		let views = document.getElementsByClassName("date")
-		setInterval(() => {
-			let date = new Date()
-			let a = date.toLocaleDateString().split("/").map(i => i.length == 1 ? "0" + i : i).join("-")
-			date = a + " " + date.toString().slice(16, 24);
-			for (let i in views)
-				views[i].innerText = "当前时间：" + date;
-		}, 100)
-		 //进入全屏
-      function enterFullScreen() {
-          var de = document.documentElement;
-         if (de.requestFullscreen) {
-             de.requestFullscreen();
-         } else if (de.mozRequestFullScreen) {
-             de.mozRequestFullScreen();
-         } else if (de.webkitRequestFullScreen) {
-             de.webkitRequestFullScreen();
-         }
-     }
-     //退出全屏
-     function exitFullScreen() {
-         var de = document;
-         if (de.exitFullscreen) {
-             de.exitFullscreen();
-         } else if (de.mozCancelFullScreen) {
-             de.mozCancelFullScreen();
-         } else if (de.webkitCancelFullScreen) {
-             de.webkitCancelFullScreen();
-         }
-     }
-	</script>
+		<div class="hint">请使用辅导猫扫码核验请假单真伪</div>
+		<div class="date"></div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<div>
+		<a href="javascript:;" onclick="enterFullScreen()">进入全屏</a>
+		&nbsp;
+		<a href="javascript:;" onclick="exitFullScreen()">退出全屏</a>
+	</div>
+</body>
+<script type="text/javascript">
+	let views = document.getElementsByClassName("date")
+	setInterval(() => {
+		let date = new Date()
+		let a = date.toLocaleDateString().split("/").map(i => i.length == 1 ? "0" + i : i).join("-")
+		date = a + " " + date.toString().slice(16, 24);
+		for (let i in views)
+			views[i].innerText = "当前时间：" + date;
+	}, 100)
+	//进入全屏
+	function enterFullScreen() {
+		var de = document.documentElement;
+		if (de.requestFullscreen) {
+			de.requestFullscreen();
+		} else if (de.mozRequestFullScreen) {
+			de.mozRequestFullScreen();
+		} else if (de.webkitRequestFullScreen) {
+			de.webkitRequestFullScreen();
+		}
+	}
+	//退出全屏111
+	function exitFullScreen() {
+		var de = document;
+		if (de.exitFullscreen) {
+			de.exitFullscreen();
+		} else if (de.mozCancelFullScreen) {
+			de.mozCancelFullScreen();
+		} else if (de.webkitCancelFullScreen) {
+			de.webkitCancelFullScreen();
+		}
+	}
+</script>
+
 </html>
